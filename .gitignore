@@ -2,3 +2,5 @@ target/
 
 # TPC-H CSV from gen-tpch-data (regenerate with npm run gen-data)
 examples/polars-bench/data/*.csv
+dist
+data

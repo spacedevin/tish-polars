@@ -2,9 +2,6 @@
 
 Bindings for the mind blowing Polars and [Tish](https://github.com/tishlang/tish). Exposes Polars DataFrames and operations to Tish scripts.
 
-**License:** [Pay It Forward (PIF)](https://payitforwardlicense.com/) — see [LICENSE](LICENSE).  
-**Contributing:** See [tish CONTRIBUTING](https://github.com/tishlang/tish/blob/main/CONTRIBUTING.md) for build/test and PR guidelines.
-
 ## Usage (Rust embedder)
 
 Use `Evaluator::with_modules` from **`tishlang_eval`** to load Polars (and call `run_timer_phase` after `eval_program` if you use HTTP timers):
