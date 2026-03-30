@@ -1,0 +1,16 @@
+{
+  "name": "polars-bench",
+  "version": "0.1.0",
+  "scripts": {
+    "gen-data": "cargo run --release --manifest-path ../../Cargo.toml --bin gen-tpch-data --",
+    "start": "cargo run --release --manifest-path ../../Cargo.toml --bin tish-polars-run -- src/main.tish",
+    "test": "npm run gen-data -- --scale ${BENCH_SCALE:-0.01} && npm run start"
+  },
+  "dependencies": {
+    "tish-polars": "^0.1.0"
+  },
+  "zectre": {
+    "source": "./src/main.tish",
+    "features": ["polars", "process"]
+  }
+}

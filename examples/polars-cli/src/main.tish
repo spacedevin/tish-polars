@@ -1,0 +1,22 @@
+// polars-cli: parse CSV, compute summary, write results to JSON
+import { Polars } from 'tish:polars';
+import { writeFile } from 'tish:fs';
+import { process } from 'tish:process';
+
+let DATA_PATH = "DATA_PATH" in process.env ? process.env.DATA_PATH : "./data/sales.csv";
+
+let df = Polars.read_csv(DATA_PATH);
+let shape = df.shape();
+let rows = shape[0];
+let cols = shape[1];
+
+let sample = df.toJson();
+let summary = {
+  rows: rows,
+  cols: cols,
+  sample: JSON.parse(sample)
+};
+
+let outPath = "data/results.json";
+writeFile(outPath, JSON.stringify(summary));
+console.log("Done. Wrote " + outPath);

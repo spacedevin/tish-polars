@@ -1,0 +1,4 @@
+name: polars-bench
+
+deploy:
+  replicas: 1

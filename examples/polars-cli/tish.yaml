@@ -1,0 +1,5 @@
+name: polars-cli
+
+# Batch job, no HTTP port - suitable for scheduled/background runs
+deploy:
+  replicas: 1

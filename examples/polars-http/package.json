@@ -1,0 +1,16 @@
+{
+  "name": "polars-http",
+  "version": "0.1.0",
+  "scripts": {
+    "start": "cargo run --manifest-path ../../Cargo.toml --bin tish-polars-run -- src/main.tish",
+    "test": "node ../../scripts/smoke-polars-http.mjs",
+    "test:manual": "npm run start"
+  },
+  "dependencies": {
+    "tish-polars": "^0.1.0"
+  },
+  "zectre": {
+    "source": "./src/main.tish",
+    "features": ["http", "polars", "process"]
+  }
+}

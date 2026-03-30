@@ -1,0 +1,4 @@
+name: polars-sql-join
+
+deploy:
+  replicas: 1

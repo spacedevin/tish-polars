@@ -1,0 +1,22 @@
+[package]
+name = "tish-polars"
+version = "0.1.0"
+edition = "2021"
+description = "Polars bindings for Tish"
+license-file = "LICENSE"
+repository = "https://github.com/tishlang/tish-polars"
+
+[[bin]]
+name = "tish-polars-run"
+path = "src/bin/tish-polars-run.rs"
+
+[[bin]]
+name = "gen-tpch-data"
+path = "src/bin/gen-tpch-data.rs"
+
+[dependencies]
+tishlang_core = { path = "../tish/crates/tish_core" }
+tishlang_eval = { path = "../tish/crates/tish_eval", features = ["http", "fs", "process"] }
+tishlang_parser = { path = "../tish/crates/tish_parser" }
+polars = { version = "0.44", default-features = false, features = ["lazy", "csv", "json", "parquet", "sql"] }
+tpchgen = "2.0.2"

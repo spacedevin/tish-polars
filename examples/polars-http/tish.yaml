@@ -1,0 +1,18 @@
+name: polars-http
+
+build:
+  source: ./src/main.tish
+  features:
+    - http
+    - polars
+
+deploy:
+  replicas: 1
+  strategy: rolling
+
+networking:
+  port: 8080
+  protocol: http
+  health_check:
+    path: /health
+    interval: 10s

@@ -1,0 +1,20 @@
+{
+  "name": "tish-polars",
+  "version": "0.1.0",
+  "description": "Polars bindings for Tish",
+  "scripts": {
+    "build": "cargo build --bin tish-polars-run && cargo build --bin gen-tpch-data",
+    "gen-data": "cargo run --release --quiet --bin gen-tpch-data --",
+    "test:cli": "cd examples/polars-cli && cargo run --quiet --manifest-path ../../Cargo.toml --bin tish-polars-run -- src/main.tish",
+    "test:bench": "npm run gen-data -- --scale ${BENCH_SCALE:-0.01} && cd examples/polars-bench && cargo run --release --quiet --manifest-path ../../Cargo.toml --bin tish-polars-run -- src/main.tish",
+    "test:sql-join": "cd examples/polars-sql-join && cargo run --quiet --manifest-path ../../Cargo.toml --bin tish-polars-run -- src/main.tish",
+    "test:http": "node scripts/smoke-polars-http.mjs",
+    "test": "npm run build && npm run test:cli && npm run test:bench && npm run test:sql-join && npm run test:http"
+  },
+  "zectre": {
+    "module": true,
+    "crate": "tish-polars",
+    "feature": "polars",
+    "export": "polars_object"
+  }
+}

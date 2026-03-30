@@ -1,0 +1,32 @@
+// polars-http: serve Polars DataFrame as JSON over HTTP
+
+import { Polars } from 'tish:polars';
+import { serve } from 'tish:http';
+import { process } from 'tish:process';
+
+let df = Polars.read_csv("./data/sales.csv");
+
+fn handleRequest(req) {
+    if (req.path === "/health") {
+        return { status: 200, body: "OK" }
+    }
+    if (req.path === "/" || req.path === "/data") {
+        if (df === null) {
+            return { status: 500, body: "Failed to load data (read_csv failed)" }
+        }
+        let json = df.toJson();
+        return {
+            status: 200,
+            headers: { contentType: "application/json" },
+            body: json
+        }
+    }
+    return {
+        status: 404,
+        body: "Not Found: " + req.path
+    }
+}
+
+let port = "PORT" in process.env ? parseInt(process.env.PORT) : 8080
+console.log("Polars HTTP serving on port " + port)
+serve(port, handleRequest)

@@ -1,0 +1,13 @@
+// polars-sql-join: two frames registered as SQL tables `l` and `r`
+import { Polars } from 'tish:polars';
+
+let sales = Polars.read_csv("./data/sales.csv");
+let categories = Polars.read_csv("./data/categories.csv");
+
+let out = Polars.sql_join(
+  sales,
+  categories,
+  "SELECT l.product, r.category, SUM(l.quantity) AS units, SUM(l.revenue) AS revenue FROM l INNER JOIN r ON l.product = r.product GROUP BY l.product, r.category ORDER BY l.product"
+);
+
+console.log(out.toJson());
