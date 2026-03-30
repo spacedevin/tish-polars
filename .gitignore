@@ -4,3 +4,5 @@ target/
 examples/polars-bench/data/*.csv
 dist
 data
+
+.DS_Store
